@@ -1,0 +1,38 @@
+application: single-will-846
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: django
+  version: "1.5"
+  
+- name: ssl
+  version: latest
+  
+builtins:
+- django_wsgi: on
+  
+env_variables:
+  DJANGO_SETTINGS_MODULE: 'wfhb_log.settings'
+
+handlers:
+- url: /static
+  static_dir: static
+  expiration: '0'
+ 
+- url: /static/admin/css
+  static_dir: static/admin/css
+ 
+- url: /static/admin/img
+  static_dir: static/admin/img
+  
+- url: /static/admin/js
+  static_dir: static/admin/js
+  
+- url: /static/loginPortal/css
+  static_dir: static/loginPortal/css
+ 
+- url: /static/loginPortal/images
+  static_dir: static/admin/images

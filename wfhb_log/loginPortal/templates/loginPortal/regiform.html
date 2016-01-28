@@ -1,0 +1,36 @@
+{% extends "loginPortal/base.html" %}
+{% block title %} RegistrationForm {% endblock %}
+
+{% block page %}
+<div id="login">
+	Registration Form
+	
+	<span style="float: right; padding-right: 1%;">
+	<a href="/login/">HOME</a>
+	</span>
+</div>
+{% endblock %}
+
+{% block buttons %}	
+<form style="text-align: left" action="/login/regi/" method="POST">{% csrf_token %} 
+{{ form.as_p }}
+<center><input style="float: none" id="submitbutton" type="submit" value="SUBMIT" /></center>
+</form>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"> 
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-100:+0",
+
+    });
+  });
+
+  </script>
+
+{% endblock %}
+

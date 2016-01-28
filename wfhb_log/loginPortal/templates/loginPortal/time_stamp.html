@@ -1,0 +1,68 @@
+{% extends "loginPortal/base.html" %}
+
+{% block title %} Time Stamp {% endblock %}
+
+{% block page %}
+	<span style="float: left; padding: 1%; text-align: left;">
+	Total Hours: {{ overall_hours }}
+	<br />
+	
+	Total Quarterly Hours: {{ quarterly_hours }}
+	</span>
+	
+	<span id="logoutbutton">
+	<a href="/login/logout">LOGOUT</a>
+	</span>
+	
+	<br />
+	<span style="float: right; padding-right: 1%;">
+	 WELCOME, {{ user }}
+	</span>	
+	
+	<br /><br />
+	{% if messages %}
+	{% for message in messages %}
+	<div "{% if message.tags %}" id="{{ message.tags }}" "{% endif %}">
+		{{ message }}
+	</div>
+	{% endfor %}
+	{% endif %}
+{% endblock %}	
+
+{% block buttons %}
+	<form action='/login/time_stamp_buff/' method='POST'>{% csrf_token %}
+	 	<span style="background-color: #E4E4E4; padding: 2%;">
+			
+			<select class="dropdownmenu" name="work_type" required>
+				<option value="" style="display: none">Select Your Department</option>
+				<option value="Administration">Administration</option>
+				<option value="News">News</option>
+				<option value="Music">Music</option>
+				<option value="Other">Other</option>
+			</select>
+			
+			<input id="inputfield"type="text" name="total_hours" placeholder="HOURS: 0.0" required>
+			<input id="inputfield"type="date" name="date" placeholder="DATE: YYYY-MM-DD" required>
+		
+		</span>
+		
+			<center>
+			<input id="submitbutton" type="submit" value="SUBMIT">
+			</center>
+			
+		<span>
+		
+	</form>
+{% endblock %}
+{% block hourinfo%} 
+<div id="hourinfo">
+	<table id="session_table">
+		<th>Dates</th><th>Hours</th>
+		{% for session in last_seven %}
+		<tr>
+			<td> {{ session.0 }} </td> <td>{{ session.1 }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}
